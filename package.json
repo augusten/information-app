@@ -1,0 +1,19 @@
+{
+  "name": "information-app",
+  "version": "0.1.1",
+  "description": "app to search and add users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augusten/information-app.git"
+  },
+  "author": "Auguste",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/augusten/information-app/issues"
+  },
+  "homepage": "https://github.com/augusten/information-app#readme"
+}
