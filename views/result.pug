@@ -1,0 +1,21 @@
+html
+	head
+	body
+		h1 Search result
+		//- display all names in our data
+		//- each item in data
+		//- 	p #{ item.firstname } #{item.lastname}
+		h2 We found:
+		each item in data
+			if item.firstname == inputData[0] && item.lastname == inputData[1]
+				p Name: #{ item.lastname }, #{ item.firstname }
+				p Email: #{ item.email }
+				br
+			else if item.firstname != inputData[0] && item.lastname == inputData[1]
+				p Name: #{ item.lastname }, #{ item.firstname }
+				p Email: #{ item.email }
+				br
+			else if item.firstname == inputData[0] && item.lastname != inputData[1]
+				p Name: #{ item.lastname }, #{ item.firstname }
+				p Email: #{ item.email }
+				br

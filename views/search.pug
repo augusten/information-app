@@ -1,0 +1,40 @@
+html
+	head
+	//- script(src='jquery-3.1.1.min.js')
+	//- script(type='text/javascript').
+	//- 	if $(".button").click( function() {
+	//- 		alert('working')
+	//- 	})
+	body
+		h1 Search for a user
+		//- div #{ data }
+		//- each item in data
+			p #{ item.firstname } #{item.lastname}
+		form(method='POST', action='/result')
+			p Firstname: 
+				input(
+					type='text'
+					name='firstname'
+				)
+			p Lastname: 
+				input(
+					type='text'
+					name='lastname'
+				)
+			p
+				input.button(type="submit")
+			//- each thing in data
+				li #{thing.firstname}'s toy is #{thing.lastname}
+
+
+		//- div Lastname: 
+		//- 	input.button(
+		//- 		type='submit'
+		//- 	)
+		//- 	script(type='text/javascript').
+		//- 		if $('.button').click( function () {
+		//- 			$.post('/search')
+		//- 			})
+
+	//- readFile of users.json - DONE in app.js
+	//- make input field in .pug -> loop over data, and if data name+surname === input, print the data of that user
