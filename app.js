@@ -1,6 +1,7 @@
 const express 	 = require( 'express' )
 const fs	     = require( 'fs' )
 const bodyParser = require( 'body-parser' )
+const objInList  = require( __dirname + '/user-exist' )
 const app 	     = express()
 
 // include variable to parse input data!
@@ -15,7 +16,7 @@ app.get( '/users', ( request, response ) => {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
 		let parsedData = JSON.parse ( data )
-		response.render( 'users', {data: parsedData})
+		response.render( 'users', {data: parsedData, message: "Welcome to a random user list"})
 	})
 })
 
@@ -48,14 +49,30 @@ app.post( '/users', urlencodedParser, ( req, res ) => {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
 		let parsedData = JSON.parse ( data )
-		// add condition to add user only if they are not in the file yet
-		parsedData.push( { 
+		let newUser = { 
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
-			email: req.body.email } )
-		// Add to / rewrite existing file with addition of new user
-		fs.writeFile( 'users.json', JSON.stringify( parsedData ))
-		res.render( 'users', {data: parsedData} )
+			email: req.body.email }
+		// add condition to add user only if they are not in the file yet
+		if ( objInList ( newUser, parsedData ) )
+		{
+			console.log('the user exists')
+			res.render( 'users', {data: parsedData, message: "The user already exists!"} )
+		} else {
+			// console.log( typeof(parsedData))
+			// console.log(parsedData)
+			// console.log( newUser )
+			parsedData.push( newUser )
+			fs.writeFile( 'users.json', JSON.stringify( parsedData ))
+			res.render( 'users', {data: parsedData, message: "you were successfully added!"} )
+		}
+		// parsedData.push( { 
+		// 	firstname: req.body.firstname,
+		// 	lastname: req.body.lastname,
+		// 	email: req.body.email } )
+		// // Add to / rewrite existing file with addition of new user
+		// fs.writeFile( 'users.json', JSON.stringify( parsedData ))
+		// res.render( 'users', {data: parsedData} )
 	})
 })
 
