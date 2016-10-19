@@ -5,7 +5,6 @@ function objectExistInArray ( obj, array ) {
 	for (var i = array.length - 1; i >= 0; i--) {
 		// check if objects are equal
 		if ( JSON.stringify(array[i]) == JSON.stringify(obj) ) {
-			console.log('it is trueeeee')
 			return true
 		}
 	}

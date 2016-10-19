@@ -13,31 +13,28 @@ app.set( 'view engine', 'pug' )
 app.set( 'views', __dirname + '/views' )
 
 // GET request to list all the users in JSON file
-app.get( '/users', ( request, response ) => {
-	console.log( 'About to show users' )
+app.get( '/users', ( req, res ) => {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
 		let parsedData = JSON.parse ( data )
-		response.render( 'users', {data: parsedData, message: "Welcome to a random user list"})
+		res.render( 'users', {data: parsedData, message: "Welcome to a random user list"})
 	})
 })
 
 // GET request to search for use in JSON file
-app.get( '/search', ( request, response ) => {
-	response.render( 'search') //{data: parsedData}
-	console.log( 'Someone is about to search for a user' )
-
+app.get( '/search', ( req, res ) => {
+	res.render( 'search')
 })
 
 // POST request to search for input in JSON file
-app.post('/result', urlencodedParser, function (request, response) {
+app.post('/result', urlencodedParser, function (req, res) {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
 		let matches = []
 		let parsedData = JSON.parse ( data )
-		response.render( 'result', { 
+		res.render( 'result', { 
 			data: parsedData, 
-			inputData: [request.body.firstname, request.body.lastname] 
+			inputData: [req.body.firstname, req.body.lastname] 
 		})
 	})
 
@@ -60,12 +57,15 @@ app.post( '/users', urlencodedParser, ( req, res ) => {
 		// add condition to add user only if they are not in the JSON file yet
 		if ( objInList ( newUser, parsedData ) )
 		{
-			console.log('the user exists')
-			res.render( 'users', {data: parsedData, message: "The user already exists!"} )
+			res.redirect( 418, 'users' )
+			// the below code changes the message for the user to see
+			// res.render( 'users', {data: parsedData, message: "The user already exists!"} )
 		} else {
 			parsedData.push( newUser )
 			fs.writeFile( 'users.json', JSON.stringify( parsedData ))
-			res.render( 'users', {data: parsedData, message: "You were successfully added!"} )
+			res.redirect( 'users' )
+			// the below code changes the message for the user to see
+			// res.render( 'users', {data: parsedData, message: "You were successfully added!"} )
 		}
 	})
 })
