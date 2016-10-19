@@ -3,7 +3,7 @@
 const express 	 = require( 'express' )
 const fs	     = require( 'fs' )
 const bodyParser = require( 'body-parser' )
-const objInList  = require( __dirname + '/user-exist' )
+const objInList  = require( __dirname + '/created_modules/user-exist' )
 const app 	     = express()
 
 // include variable to parse input data
@@ -65,7 +65,7 @@ app.post( '/users', urlencodedParser, ( req, res ) => {
 		} else {
 			parsedData.push( newUser )
 			fs.writeFile( 'users.json', JSON.stringify( parsedData ))
-			res.render( 'users', {data: parsedData, message: "you were successfully added!"} )
+			res.render( 'users', {data: parsedData, message: "You were successfully added!"} )
 		}
 	})
 })
