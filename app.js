@@ -1,10 +1,12 @@
+// Add some requirements to the file
+
 const express 	 = require( 'express' )
 const fs	     = require( 'fs' )
 const bodyParser = require( 'body-parser' )
 const objInList  = require( __dirname + '/user-exist' )
 const app 	     = express()
 
-// include variable to parse input data!
+// include variable to parse input data
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.set( 'view engine', 'pug' )
@@ -31,6 +33,7 @@ app.get( '/search', ( request, response ) => {
 app.post('/result', urlencodedParser, function (request, response) {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
+		let matches = []
 		let parsedData = JSON.parse ( data )
 		response.render( 'result', { 
 			data: parsedData, 
@@ -45,6 +48,7 @@ app.get( '/create', ( req, res ) => {
 	res.render( 'createuser' )
 })
 
+// POST when the addition of a user is made
 app.post( '/users', urlencodedParser, ( req, res ) => {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
@@ -53,26 +57,16 @@ app.post( '/users', urlencodedParser, ( req, res ) => {
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
 			email: req.body.email }
-		// add condition to add user only if they are not in the file yet
+		// add condition to add user only if they are not in the JSON file yet
 		if ( objInList ( newUser, parsedData ) )
 		{
 			console.log('the user exists')
 			res.render( 'users', {data: parsedData, message: "The user already exists!"} )
 		} else {
-			// console.log( typeof(parsedData))
-			// console.log(parsedData)
-			// console.log( newUser )
 			parsedData.push( newUser )
 			fs.writeFile( 'users.json', JSON.stringify( parsedData ))
 			res.render( 'users', {data: parsedData, message: "you were successfully added!"} )
 		}
-		// parsedData.push( { 
-		// 	firstname: req.body.firstname,
-		// 	lastname: req.body.lastname,
-		// 	email: req.body.email } )
-		// // Add to / rewrite existing file with addition of new user
-		// fs.writeFile( 'users.json', JSON.stringify( parsedData ))
-		// res.render( 'users', {data: parsedData} )
 	})
 })
 

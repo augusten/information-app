@@ -12,19 +12,22 @@ html
 			p #{ item.firstname } #{item.lastname}
 		form(method='POST', action='/users')
 			p Firstname: 
+				br
 				input(
 					type='text'
 					name='firstname'
 				)
-			p Lastname: 
+			p Lastname:
+				br 
 				input(
 					type='text'
 					name='lastname'
 				)
 			p Email: 
+				br
 				input(
 					type='email'
 					name='email'
 				)
 			p
-				input.button(type="submit")
+				input.button(type="submit", value="Add user")

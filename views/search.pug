@@ -4,14 +4,16 @@ html
 		h1 Search for a user
 		form(method='POST', action='/result')
 			p Firstname: 
+				br
 				input(
 					type='text'
 					name='firstname'
 				)
 			p Lastname: 
+				br
 				input(
 					type='text'
 					name='lastname'
 				)
 			p
-				input.button(type="submit")
+				input.button(type="submit", value="Search")
