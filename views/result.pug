@@ -5,22 +5,23 @@ html
 		h2 We found:
 		//- initialize a variable in order to track whether some results matches have been found
 		- let isEmpty = true
+		- let matchArray = []
 		each item in data
-			//- find matches from search
+			//- find matches from search and put them in the order so that the exact match is displayed first
 			if item.firstname == inputData[0] && item.lastname == inputData[1]
-				p Name: #{ item.lastname }, #{ item.firstname }
-				p Email: #{ item.email }
+				- matchArray.splice( 0, 0, item)
 				- isEmpty = false
-				br
 			else if item.firstname != inputData[0] && item.lastname == inputData[1]
-				p Name: #{ item.lastname }, #{ item.firstname }
-				p Email: #{ item.email }
+				- matchArray.push( item )
 				- isEmpty = false
-				br
 			else if item.firstname == inputData[0] && item.lastname != inputData[1]
-				p Name: #{ item.lastname }, #{ item.firstname }
-				p Email: #{ item.email }
+				- matchArray.push( item )
 				- isEmpty = false
-				br
+		//- display either no matches or an ordered list of matches
 		if isEmpty === true
 			p There are no matches
+		else
+			each item in matchArray
+				p Name: #{ item.lastname }, #{ item.firstname }
+				p Email: #{ item.email }
+				br
