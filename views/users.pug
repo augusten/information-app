@@ -1,7 +1,8 @@
 html
 	head
+		link(rel="stylesheet" href='/main.css' type="text/css")
 	body
-		h1 #{ message }
+		h1(id="hfirst") #{ message }
 		//- display all names in our data
 		each item in data
-			p #{ item.firstname } #{item.lastname}
+			p #{ item.firstname } #{ item.lastname }

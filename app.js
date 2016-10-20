@@ -5,12 +5,15 @@ const fs	     = require( 'fs' )
 const bodyParser = require( 'body-parser' )
 const objInList  = require( __dirname + '/created_modules/user-exist' )
 const app 	     = express()
+const path 		 = require( 'path' )
 
 // include variable to parse input data
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.set( 'view engine', 'pug' )
 app.set( 'views', __dirname + '/views' )
+
+app.use( express.static( 'includes' ) )
 
 // GET request to list all the users in JSON file
 app.get( '/users', ( req, res ) => {
@@ -73,3 +76,5 @@ app.post( '/users', urlencodedParser, ( req, res ) => {
 app.listen( 8000, () => {
 	console.log( " I'm running" )
 })
+
+let obj = {name: "Guga", }
