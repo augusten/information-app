@@ -13,6 +13,7 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.set( 'view engine', 'pug' )
 app.set( 'views', __dirname + '/views' )
 
+//added to use static files, like css
 app.use( express.static( 'includes' ) )
 
 // GET request to list all the users in JSON file
