@@ -30,6 +30,16 @@ app.get( '/search', ( req, res ) => {
 	res.render( 'search')
 })
 
+
+app.post( '/givethisback', urlencodedParser, ( req, res ) => {
+	fs.readFile( __dirname + '/users.json', ( err, data ) => {
+		if ( err ) throw err
+		var input = req.body.data
+		res.send(input)
+	})
+})
+
+
 // POST request to search for input in JSON file
 app.post('/result', urlencodedParser, function (req, res) {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
