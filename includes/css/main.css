@@ -1,0 +1,28 @@
+#hfirst {
+	font-size: 40px;
+}
+
+div
+{
+    position: relative;
+}
+#firstname{
+    z-index: 11;
+    background: transparent;
+
+}
+
+#lastname{
+    z-index: 11;
+    background: transparent;
+
+}
+
+#autocomplete{
+    background: transparent;
+    z-index: 11;
+}
+
+.ui-helper-hidden-accessible {
+	display: none;
+}

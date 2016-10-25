@@ -1,5 +1,7 @@
 html
 	head
+		link(rel="stylesheet" href='/css/main.css' type="text/css")
+		link(rel="stylesheet" href='/css/jquery-ui.min.css' type="text/css")
 	body
 		h1 Search for a user
 		//- form(method='POST', action='/result')
@@ -22,42 +24,21 @@ html
 				input(type="submit" id="call_back_btn" value="Search")
 			//- div(id='result')
 		script(src='/js/jquery-3.1.1.min.js')
+		script(src='/js/jquery-ui.min.js')
 		script.
 			$(document).ready(function() {
-				$('#firstname').keyup( function() {
+				$('#call_back_btn').click( function ( event ) {
+					event.preventDefault()
+				})
+				$('#firstname').keyup( function( ) {
 					var txt = $(this).val()
-					$.post( "/givethisback", {data: txt}, function (data) {
+					$.post( "/givethisback", {inputData: txt}, function ( data, status ) {
 						console.log( data )
-					}
-				)})
+						$('#firstname').autocomplete({
+							source: data,
+							minLength: 1
+						})			
+					})
+
+				})
 			})
-
-			//- track the variable typed in $(this).val()
-			//- get the app.get
-			//- in the app get go through users.json and match up the input to firstname and lastname strings
-			//- res.send back the string found to pug
-			//- show results in pug file - success function
-
-			//- use keyup instead of click
-
-		//- script.
-		//- 	$(document).ready(function() {
-		//- 		$('#firstname').keyup(function(){
-		//- 			var txt = $(this).val()
-		//- 			if(txt != '') {
-
-		//- 			} else {
-		//- 				$.ajax({
-		//- 					url: '/../app.js',
-		//- 					method: 'post',
-		//- 					dataType: 'text',
-		//- 					data: {
-		//- 						searchText: txt
-		//- 					},
-		//- 					success: function ( data ) {
-		//- 						$('#result').html( data )
-		//- 					}
-		//- 				})
-		//- 			}
-		//- 		})
-		//- 	})
