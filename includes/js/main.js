@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	// when document loads every 2 seconds an ajax post request is sent to the backend
+	// to do the autocomplete of the search input field
 	let currDate = 0
 	function doAjaxNow () {
 		let txt = $('#name').val()
