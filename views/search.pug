@@ -23,15 +23,53 @@ html
 		script(src='/js/jquery-3.1.1.min.js')
 		script(src='/js/jquery-ui.min.js')
 		script.
+			var interval = 1000
 			$(document).ready(function() {
+				let currDate = 0
 				$('#name').keyup( function( ) {
 					var txt = $(this).val()
-					$.post( "/givethisback", {inputData: txt}, function ( data, status ) {
-						$('#name').autocomplete({
-							source: data,
-							minLength: 1
-						})			
-					})
+					function doAjax () {
+						$.ajax({
+							type: 'POST',
+							url: "/givethisback",
+							data: {inputData: txt},
+							success: 
+								function ( data, status ) {
+									//- console.log(Date.now())
+									//- console.log(currDate)
+									if ( (Date.now() - currDate) >= 5000 ) {
+										$('#name').autocomplete({
+										source: data,
+										minLength: 1
+										})
+										currDate = Date.now()
+										console.log(currDate)
+										//- setTimeout( doAjax (), 5000)
+									//- let currDate = Date.now()
+									
+
+								}
+								//- complete: 
+									//- function () {
+									//- 	if ( (Date.now - currDate) >= 300 ) {
+									//- 		currDate = Date.now
+									//- 		console.log(currDate)
+									//- 		doAjax ()
+									//- 		}
+										//- setTimeout(doAjax, interval)
+								//- 			console.log(interval)
+								setTimeout( doAjax (), 5000)
+								}
+							})
+					}
+					//- setTimeout(function(){ alert("Hello"); }, 3000)
+					setTimeout( doAjax (), 5000)
+					//- $.post( "/givethisback", {inputData: txt}, function ( data, status ) {
+					//- 	$('#name').autocomplete({
+					//- 		source: data,
+					//- 		minLength: 1
+					//- 	})		
+					//- })
 
 				})
 			})
