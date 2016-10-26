@@ -5,7 +5,7 @@ const fs	     = require( 'fs' )
 const bodyParser = require( 'body-parser' )
 const objInList  = require( __dirname + '/created_modules/user-exist' )
 const app 	     = express()
-const path 		 = require( 'path' )
+// const path 		 = require( 'path' )
 
 // include variable to parse input data
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -37,10 +37,10 @@ app.post( '/givethisback', urlencodedParser, ( req, res ) => {
 		if ( err ) throw err
 		let parsedData = JSON.parse ( data )
 		let dataBack = []
-		var input = req.body.inputData
+		var input = req.body.inputData.toLowerCase()
 		//- check if input string is equal to any strings in the data! 
 		for (var i = parsedData.length - 1; i >= 0; i--) {
-			if ( (parsedData[i].firstname + ' ' + parsedData[i].lastname).indexOf( input ) !== -1 ) {
+			if ( (parsedData[i].firstname.toLowerCase() + ' ' + parsedData[i].lastname.toLowerCase()).indexOf( input ) !== -1 ) {
 				dataBack.push( parsedData[i].firstname + ' ' + parsedData[i].lastname )
 			}
 		}
