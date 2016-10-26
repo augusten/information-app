@@ -33,6 +33,7 @@ app.get( '/search', ( req, res ) => {
 
 app.post( '/givethisback', urlencodedParser, ( req, res ) => {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
+		// loop over data to see if input from front-end matches any of the data string values
 		if ( err ) throw err
 		let parsedData = JSON.parse ( data )
 		let dataBack = []
