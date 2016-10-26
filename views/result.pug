@@ -1,8 +1,12 @@
 html
 	head
+		link(rel="stylesheet" href='/css/main.css' type="text/css")
+		link(rel="stylesheet" href='/bootstrap/css/bootstrap.min.css' type="text/css")
+		link(rel="stylesheet" href='/css/jquery-ui.min.css' type="text/css")
 	body
-		h1 Search result
-		h2 We found:
+		h1(class='text-center') Search result
+		h2(class='text-center') We found:
+		br
 		//- initialize a variable in order to track whether some results matches have been found
 		- let isEmpty = true
 		- let matchArray = []
@@ -19,9 +23,11 @@ html
 				- isEmpty = false
 		//- display either no matches or an ordered list of matches
 		if isEmpty === true
-			p There are no matches
+			p(class='text-center') There are no matches
 		else
 			each item in matchArray
-				p Name: #{ item.lastname }, #{ item.firstname }
-				p Email: #{ item.email }
+				p(class='text-center') Name: #{ item.lastname }, #{ item.firstname }
+				p(class='text-center') Email: #{ item.email }
 				br
+	script(src='/js/jquery-3.1.1.min.js')
+	script(src='/js/jquery-ui.min.js')

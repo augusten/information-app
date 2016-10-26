@@ -24,13 +24,9 @@ html
 		script(src='/js/jquery-ui.min.js')
 		script.
 			$(document).ready(function() {
-				$('#call_back_btn').click( function ( event ) {
-					event.preventDefault()
-				})
 				$('#name').keyup( function( ) {
 					var txt = $(this).val()
 					$.post( "/givethisback", {inputData: txt}, function ( data, status ) {
-						console.log( data )
 						$('#name').autocomplete({
 							source: data,
 							minLength: 1

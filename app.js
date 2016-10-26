@@ -54,11 +54,13 @@ app.post( '/givethisback', urlencodedParser, ( req, res ) => {
 app.post('/result', urlencodedParser, function (req, res) {
 	fs.readFile( __dirname + '/users.json', ( err, data ) => {
 		if (err) throw err
-		let matches = []
+		// let matches = []
 		let parsedData = JSON.parse ( data )
+		let firstname = req.body.name.split( ' ' )[0]
+		let lastname = req.body.name.split( ' ' )[1]
 		res.render( 'result', { 
 			data: parsedData, 
-			inputData: [req.body.firstname, req.body.lastname] 
+			inputData: [firstname, lastname] 
 		})
 	})
 
