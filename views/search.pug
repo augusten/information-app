@@ -7,9 +7,11 @@ html
 		h1(class='text-center') Search for a user
 		div(class='container')
 			form(method='POST', action='/result')
+				//- create a form that would use POST request after submission
 				div( class='form-group row')
 					label( for='name' class="col-sm-2 col-form-label col-form-label-lg") Name
 					div(class="col-sm-10")
+						//- input name
 						input(
 							type='text'
 							name='name'
@@ -19,61 +21,7 @@ html
 						)
 				div( class='form-group row text-center')
 					input(type="submit" id="call_back_btn" class='btn btn-primary' value="Search")
-				//- div(id='result')
 		script(src='/js/jquery-3.1.1.min.js')
 		script(src='/js/jquery-ui.min.js')
-		script.
-			var interval = 1000
-			$(document).ready(function() {
-				let currDate = 0
-				function doAjaxNow () {
-					let txt = $('#name').val()
-					$.ajax({
-						type: 'POST',
-						url: "/givethisback",
-						data: {inputData: txt},
-						success: 
-								function ( data, status ) {
-									//- console.log(Date.now())
-									//- console.log(currDate)
-									if ( (Date.now() - currDate) >= 300 ) {
-										$('#name').autocomplete({
-										source: data,
-										minLength: 1
-										})
-										currDate = Date.now()
-										console.log(currDate)
-									}
-								setTimeout( doAjaxNow (), 5000)
-								}
-						})
-				}
-
-				doAjaxNow()
-
-				//- $('#name').keyup( function( ) {
-				//- 	var txt = $(this).val()
-				//- 	function doAjax () {
-				//- 		$.ajax({
-				//- 			type: 'POST',
-				//- 			url: "/givethisback",
-				//- 			data: {inputData: txt},
-				//- 			success: 
-				//- 				function ( data, status ) {
-				//- 					//- console.log(Date.now())
-				//- 					//- console.log(currDate)
-				//- 					if ( (Date.now() - currDate) >= 300 ) {
-				//- 						$('#name').autocomplete({
-				//- 						source: data,
-				//- 						minLength: 1
-				//- 						})
-				//- 						currDate = Date.now()
-				//- 						console.log(currDate)
-				//- 					}
-				//- 				setTimeout( doAjax (), 5000)
-				//- 				}
-				//- 		})
-				//- 	}
-				//- 	setTimeout( doAjax (), 5000)
-				//- })
-			})
+		script(src='bootstrap/js/bootstrap.min.js')
+		script(src='/main.js')

@@ -1,28 +1,28 @@
-#hfirst {
-	font-size: 40px;
+/*.autocomplete {
+    display: -ms-flexbox;
+    display: flex;
 }
-
-div
-{
-    position: relative;
+.autocomplete .ac-users {
+    padding-top: 10px;
 }
-#firstname{
-    z-index: 11;
-    background: transparent;
-
+.autocomplete .ac-users .chip {
+    -ms-flex: auto;
+    flex: auto;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
-
-#lastname{
-    z-index: 11;
-    background: transparent;
-
+.autocomplete .ac-users .chip:last-child {
+    margin-right: 5px;
 }
-
-#autocomplete{
-    background: transparent;
-    z-index: 11;
+.autocomplete .ac-dropdown .ac-hover {
+    background: #eee;
 }
-
-.ui-helper-hidden-accessible {
-	display: none;
+.autocomplete .ac-input {
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 150px;
+    padding-top: 0.6rem;
 }
+.autocomplete .ac-input input {
+    height: 2.4rem;
+}*/
