@@ -40,8 +40,8 @@ app.post( '/givethisback', urlencodedParser, ( req, res ) => {
 		var input = req.body.inputData
 		//- check if input string is equal to any strings in the data! 
 		for (var i = parsedData.length - 1; i >= 0; i--) {
-			if (parsedData[i].firstname.indexOf( input ) !== -1 ) {
-				dataBack.push( parsedData[i].firstname )
+			if ( (parsedData[i].firstname + ' ' + parsedData[i].lastname).indexOf( input ) !== -1 ) {
+				dataBack.push( parsedData[i].firstname + ' ' + parsedData[i].lastname )
 			}
 		}
 
