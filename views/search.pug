@@ -26,6 +26,18 @@ html
 			var interval = 1000
 			$(document).ready(function() {
 				let currDate = 0
+				function doAjaxToo () {
+					$.ajax({
+						type: 'GET',
+						url: '/givethisback'
+						success: function ( data, status ) {
+							console.log( data )
+							setTimeout( doAjaxToo (), 5000)
+						}
+					})
+				}
+				setTimeout( doAjaxToo (), 5000)
+
 				$('#name').keyup( function( ) {
 					var txt = $(this).val()
 					function doAjax () {
@@ -37,7 +49,7 @@ html
 								function ( data, status ) {
 									//- console.log(Date.now())
 									//- console.log(currDate)
-									if ( (Date.now() - currDate) >= 5000 ) {
+									if ( (Date.now() - currDate) >= 300 ) {
 										$('#name').autocomplete({
 										source: data,
 										minLength: 1
@@ -58,12 +70,20 @@ html
 									//- 		}
 										//- setTimeout(doAjax, interval)
 								//- 			console.log(interval)
-								setTimeout( doAjax (), 5000)
+
+
+									//- setTimeout( doAjax (), 5000)
 								}
 							})
 					}
 					//- setTimeout(function(){ alert("Hello"); }, 3000)
-					setTimeout( doAjax (), 5000)
+
+
+
+					//- setTimeout( doAjax (), 5000)
+
+
+						
 					//- $.post( "/givethisback", {inputData: txt}, function ( data, status ) {
 					//- 	$('#name').autocomplete({
 					//- 		source: data,
