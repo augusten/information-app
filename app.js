@@ -37,7 +37,8 @@ app.post( '/givethisback', urlencodedParser, ( req, res ) => {
 		if ( err ) throw err
 		let parsedData = JSON.parse ( data )
 		let dataBack = []
-		var input = req.body.inputData.toLowerCase()
+		let input = req.body.inputData.toLowerCase()
+
 		//- check if input string is equal to any strings in the data! 
 		for (var i = parsedData.length - 1; i >= 0; i--) {
 			if ( (parsedData[i].firstname.toLowerCase() + ' ' + parsedData[i].lastname.toLowerCase()).indexOf( input ) !== -1 ) {

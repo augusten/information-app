@@ -1,27 +1,38 @@
 html
 	head
 		link(rel="stylesheet" href='/css/main.css' type="text/css")
-		link(rel="stylesheet" href='/bootstrap/css/bootstrap.min.css' type="text/css")
+		//- link(rel="stylesheet" href='/bootstrap/css/bootstrap.min.css' type="text/css")
 		link(rel="stylesheet" href='/css/jquery-ui.min.css' type="text/css")
+		link(rel="stylesheet" href="/css/materialize.min.css")
+		link(href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css')
 	body
 		h1(class='text-center') Search for a user
 		div(class='container')
-			form(method='POST', action='/result')
-				//- create a form that would use POST request after submission
-				div( class='form-group row')
-					label( for='name' class="col-sm-2 col-form-label col-form-label-lg") Name
-					div(class="col-sm-10")
-						//- input name
-						input(
-							type='text'
-							name='name'
-							id='name'
-							placeholder='Insert name'
-							class="form-control form-control-lg"
-						)
-				div( class='form-group row text-center')
-					input(type="submit" id="call_back_btn" class='btn btn-primary' value="Search")
-		script(src='/js/jquery-3.1.1.min.js')
-		script(src='/js/jquery-ui.min.js')
-		script(src='bootstrap/js/bootstrap.min.js')
-		script(src='/js/main.js')
+			div(class='row')
+				form(class='col s12' method='POST', action='/result')
+					//- create a form that would use POST request after submission
+					div( class='row')
+						div(class='input-field col s6')
+							//- input name
+							input(
+								type='text'
+								name='name'
+								id='name'
+								list='datalist'
+								placeholder='Insert name'
+								class="active validate"
+							)
+							label( for='name') Name
+							datalist(id="datalist")
+
+							//- div(class="col-sm-10")
+								//- input name
+						//- div( class='form-group row text-center')
+					input(type="submit" class="btn" id="call_back_btn" value="Search")
+						//- 	input(type="submit" id="call_back_btn" class='btn btn-primary' value="Search")
+	script(src='/js/jquery-3.1.1.min.js')
+	script(src='/js/jquery-ui.min.js')
+	//- script(src='bootstrap/js/bootstrap.min.js')
+	script(src='/js/materialize.min.js')
+	//- script(src='/js/main.js')
+	script(src='/main.js')
