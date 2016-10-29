@@ -25,6 +25,7 @@ $(document).ready(function() {
 			})
 		}
  		if (( time - prevTime ) >= 300 ) {
+ 			// bandwith optimization part
  			// if 3 miliseconds passes between key presses, then send 
  			// backed request at once.
  			doAjax()
