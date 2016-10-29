@@ -1,11 +1,13 @@
 html
+
 	head
 		link(rel="stylesheet" href='/css/main.css' type="text/css")
-		link(rel="stylesheet" href='/bootstrap/css/bootstrap.min.css' type="text/css")
 		link(rel="stylesheet" href='/css/jquery-ui.min.css' type="text/css")
+		link(rel="stylesheet" href="/css/materialize.min.css")
+		link(href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css')
 	body
-		h1(class='text-center') Search result
-		h2(class='text-center') We found:
+		h1(class='valign center') Search result
+		h2(class='valign center') We found:
 		br
 		//- initialize a variable in order to track whether some results matches have been found
 		- let isEmpty = true
@@ -23,11 +25,13 @@ html
 				- isEmpty = false
 		//- display either no matches or an ordered list of matches
 		if isEmpty === true
-			p(class='text-center') There are no matches
+			p(class='valign center') There are no matches
 		else
 			each item in matchArray
-				p(class='text-center') Name: #{ item.lastname }, #{ item.firstname }
-				p(class='text-center') Email: #{ item.email }
+				p(class='valign center') Name: #{ item.lastname }, #{ item.firstname }
+				p(class='valign center') Email: #{ item.email }
 				br
 	script(src='/js/jquery-3.1.1.min.js')
 	script(src='/js/jquery-ui.min.js')
+	script(src='/js/materialize.min.js')
+	script(src='/js/main.js')

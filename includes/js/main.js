@@ -1,51 +1,39 @@
 $(document).ready(function() {
-	// when document loads every 2 seconds an ajax post request is sent to the backend
-	// to do the autocomplete of the search input field
-	let currDate = 0
-	function doAjaxNow () {
-		let txt = $('#name').val()
-		$.ajax({
-			type: 'POST',
-			url: "/givethisback",
-			data: {inputData: txt},
-			success: 
-					function ( data, status ) {
-						if ( (Date.now() - currDate) >= 2000 ) {
-							$('#name').autocomplete({
-							source: data,
-							minLength: 1
-							})
-							currDate = Date.now()
-						}
-						doAjaxNow()
+	// when document loads autocomplete is possible
+	let prevTime = Date.now()
+	$('#name').keyup( function( ) {
+		// After pressing a key, the following will be carried out to do autocomplete!
+
+		// some constants
+ 		var time = Date.now()
+ 		var txt = $(this).val()
+		// set up function to do AJAX request
+ 		function doAjax () {
+			// function to send request to backe-end
+			$.ajax({
+				type: 'POST',
+				url: "/givethisback",
+				data: {inputData: txt},
+				success: 
+					function ( ddata, status ) {
+						// function performs autocomplete
+						$('#datalist').empty()
+							for (var i = ddata.length - 1; i >= 0; i--) {
+								$('#datalist').append('<option value="' + ddata[i] + '"></option>')
+							}					
 					}
 			})
-	}
-	doAjaxNow()
-
-	//- $('#name').keyup( function( ) {
-	//- 	var txt = $(this).val()
-	//- 	function doAjax () {
-	//- 		$.ajax({
-	//- 			type: 'POST',
-	//- 			url: "/givethisback",
-	//- 			data: {inputData: txt},
-	//- 			success: 
-	//- 				function ( data, status ) {
-	//- 					//- console.log(Date.now())
-	//- 					//- console.log(currDate)
-	//- 					if ( (Date.now() - currDate) >= 300 ) {
-	//- 						$('#name').autocomplete({
-	//- 						source: data,
-	//- 						minLength: 1
-	//- 						})
-	//- 						currDate = Date.now()
-	//- 						console.log(currDate)
-	//- 					}
-	//- 				setTimeout( doAjax (), 5000)
-	//- 				}
-	//- 		})
-	//- 	}
-	//- 	setTimeout( doAjax (), 5000)
-	//- })
+		}
+ 		if (( time - prevTime ) >= 300 ) {
+ 			// bandwith optimization part
+ 			// if 3 miliseconds passes between key presses, then send 
+ 			// backed request at once.
+ 			doAjax()
+ 			prevTime = time
+ 		} else {
+ 			// else, send request in 3 second time
+ 			setTimeout( doAjax, 300)
+ 			prevTime = time
+ 		}
+	})
 })

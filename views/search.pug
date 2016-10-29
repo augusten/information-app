@@ -1,38 +1,31 @@
 html
 	head
 		link(rel="stylesheet" href='/css/main.css' type="text/css")
-		//- link(rel="stylesheet" href='/bootstrap/css/bootstrap.min.css' type="text/css")
 		link(rel="stylesheet" href='/css/jquery-ui.min.css' type="text/css")
 		link(rel="stylesheet" href="/css/materialize.min.css")
 		link(href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css')
 	body
-		h1(class='text-center') Search for a user
-		div(class='container')
+		h1(class='valign center') Search for a user
+		div(class='container valign center')
 			div(class='row')
-				form(class='col s12' method='POST', action='/result')
+				form(class='col s12 valign center' method='POST', action='/result')
 					//- create a form that would use POST request after submission
 					div( class='row')
-						div(class='input-field col s6')
+						div(class='col s2')
+						div(class='input-field col s8 valign center')
 							//- input name
 							input(
 								type='text'
 								name='name'
 								id='name'
 								list='datalist'
-								placeholder='Insert name'
-								class="active validate"
+								placeholder='Insert full name'
+								class="active validate valign center"
 							)
-							label( for='name') Name
 							datalist(id="datalist")
-
-							//- div(class="col-sm-10")
-								//- input name
-						//- div( class='form-group row text-center')
+						div(class='col s2')
 					input(type="submit" class="btn" id="call_back_btn" value="Search")
-						//- 	input(type="submit" id="call_back_btn" class='btn btn-primary' value="Search")
 	script(src='/js/jquery-3.1.1.min.js')
 	script(src='/js/jquery-ui.min.js')
-	//- script(src='bootstrap/js/bootstrap.min.js')
 	script(src='/js/materialize.min.js')
-	//- script(src='/js/main.js')
-	script(src='/main.js')
+	script(src='/js/main.js')

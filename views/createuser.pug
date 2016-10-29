@@ -1,29 +1,51 @@
 html
 	head
 		link(rel="stylesheet" href='/css/main.css' type="text/css")
-		link(rel="stylesheet" href='/bootstrap/css/bootstrap.min.css' type="text/css")
 		link(rel="stylesheet" href='/css/jquery-ui.min.css' type="text/css")
+		link(rel="stylesheet" href="/css/materialize.min.css")
+		link(href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css')
 	body
-		h1 Create a new a user
+		h1(class='valign center') Create a new a user
 		//- create a form for the creation of new user
-		form(method='POST', action='/users')
-			p Firstname: 
-				br
-				input(
-					type='text'
-					name='firstname'
-				)
-			p Lastname:
-				br 
-				input(
-					type='text'
-					name='lastname'
-				)
-			p Email: 
-				br
-				input(
-					type='email'
-					name='email'
-				)
-			p
-				input.button(type="submit", value="Add user")
+		form(class='col s12 valign center' method='POST', action='/users')
+			div( class='row')
+				div(class='col s2')
+				div(class='input-field col s8 valign center')
+					//- input name
+					input(
+						type='text'
+						name='firstname'
+						placeholder='firstname'
+						class="valign center"
+					)
+					//- label Firstname
+				div(class='col s2')
+			div( class='row')
+				div(class='col s2')
+				div(class='input-field col s8 valign center')
+					//- input name
+					input(
+						type='text'
+						name='lastname'
+						placeholder='lastname'
+						class="valign center"
+					)
+					//- label Lastname
+				div(class='col s2')
+			div( class='row')
+				div(class='col s2')
+				div(class='input-field col s8 valign center')
+					//- input name
+					input(
+						type='text'
+						name='email'
+						placeholder='@'
+						class="valign center"
+					)
+					//- label Email
+				div(class='col s2')
+			input(type="submit" class="btn" id="call_back_btn" value="Add user")
+	script(src='/js/jquery-3.1.1.min.js')
+	script(src='/js/jquery-ui.min.js')
+	script(src='/js/materialize.min.js')
+	script(src='/js/main.js')

@@ -100,5 +100,3 @@ app.post( '/users', urlencodedParser, ( req, res ) => {
 app.listen( 8000, () => {
 	console.log( " I'm running" )
 })
-
-let obj = {name: "Guga", }
