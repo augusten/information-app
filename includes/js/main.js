@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// when document loads autocomplete is possible
-	let prevTime = Date.now()
+	let prevTime = 0
 	$('#name').keyup( function( ) {
 		// After pressing a key, the following will be carried out to do autocomplete!
 
@@ -9,6 +9,7 @@ $(document).ready(function() {
  		var txt = $(this).val()
 		// set up function to do AJAX request
  		function doAjax () {
+ 			console.log(time)
 			// function to send request to backe-end
 			$.ajax({
 				type: 'POST',
@@ -29,11 +30,7 @@ $(document).ready(function() {
  			// if 3 miliseconds passes between key presses, then send 
  			// backed request at once.
  			doAjax()
- 			prevTime = time
- 		} else {
- 			// else, send request in 3 second time
- 			setTimeout( doAjax, 300)
- 			prevTime = time
+ 			prevTime = Date.now()
  		}
 	})
 })
